@@ -3,10 +3,8 @@ import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import RecipeGrid from "../components/RecipeGrid";
 
-// import LoadingSpinner from "../components/LoadingSpinner";
-// import EmptyState from "../components/EmptyState";
 
-function SearchPage({ onRecipeClick }) {
+function SearchPage() {
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -60,7 +58,6 @@ function SearchPage({ onRecipeClick }) {
         query={query}
         loading={loading}
         error={error}
-        onRecipeClick={onRecipeClick}
       />
       {/* swap in LoadingSpinner or EmptyState based on your state */}
     </div>

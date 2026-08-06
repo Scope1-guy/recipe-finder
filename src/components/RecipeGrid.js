@@ -1,7 +1,7 @@
 import RecipeCard from "./RecipeCard";
 import LoadingSpinner from "./LoadingSpinner";
 
-function RecipeGrid({ recipes, query, loading, error, onRecipeClick }) {
+function RecipeGrid({ recipes, query, loading, error }) {
   if (error) {
     return <p className="error-state">{error}</p>;
   }
@@ -24,11 +24,7 @@ function RecipeGrid({ recipes, query, loading, error, onRecipeClick }) {
         <p className="empty-state">No recipes found. Try a different search.</p>
       ) : (
         recipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.idMeal}
-            recipe={recipe}
-            onRecipeClick={onRecipeClick}
-          />
+          <RecipeCard key={recipe.idMeal} recipe={recipe} />
         ))
       )}
     </div>
