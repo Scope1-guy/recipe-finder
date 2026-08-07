@@ -49,6 +49,7 @@
 
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 function RecipeDetailPage() {
   const { id } = useParams();
@@ -91,60 +92,68 @@ function RecipeDetailPage() {
   const ingredientsList = getIngredientsList(recipe);
   const embedUrl = getYoutubeEmbedUrl(recipe.strYoutube);
 
+  console.log("youtube field:", recipe.strYoutube);
+
   return (
-    <div className="recipe-detail">
-      <Link to="/search" className="recipe-detail__back">
-        ← Back to search
-      </Link>
+    <div>
+      <Navbar />
 
-      <img
-        className="recipe-detail__image"
-        src={recipe.strMealThumb}
-        alt={recipe.strMeal}
-      />
-      <h2 className="recipe-detail__title">{recipe.strMeal}</h2>
-      <p className="recipe-detail__category">{recipe.strCategory}</p>
+      <div className="recipe-detail">
+        <button className="recipe-detail__favorite">
+          <Link to="/search" className="recipe-detail__back">
+            ← Back to search
+          </Link>
+        </button>
 
-      <section className="recipe-detail__section">
-        <h3>Ingredients</h3>
-        <ul className="recipe-detail__ingredients">
-          {ingredientsList.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
+        <img
+          className="recipe-detail__image"
+          src={recipe.strMealThumb}
+          alt={recipe.strMeal}
+        />
+        <h2 className="recipe-detail__title">{recipe.strMeal}</h2>
+        <p className="recipe-detail__category">{recipe.strCategory}</p>
 
-      <section className="recipe-detail__section">
-        <h3>Instructions</h3>
-        <p>{recipe.strInstructions}</p>
-      </section>
+        <section className="recipe-detail__section">
+          <h3>Ingredients</h3>
+          <ul className="recipe-detail__ingredients">
+            {ingredientsList.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </section>
 
-      {embedUrl && (
-        <>
-          <button
-            className="recipe-detail__favourite"
-            onClick={() => setShowVideo(!showVideo)}
-          >
-            {showVideo ? "Hide Video" : "Watch Video"}
-          </button>
+        <section className="recipe-detail__section">
+          <h3>Instructions</h3>
+          <p>{recipe.strInstructions}</p>
+        </section>
 
-          {showVideo && (
-            <div className="recipe-detail__video">
-              <iframe
-                width="100%"
-                height="315"
-                src={embedUrl}
-                title="Recipe Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-        </>
-      )}
+        {embedUrl && (
+          <>
+            <button
+              className="recipe-detail__favorite"
+              onClick={() => setShowVideo(!showVideo)}
+            >
+              {showVideo ? "Hide Video" : "Watch Video"}
+            </button>
 
-      <button className="recipe-detail__favorite">Add to Favorites</button>
+            {showVideo && (
+              <div className="recipe-detail__video">
+                <iframe
+                  width="100%"
+                  height="315"
+                  src={embedUrl}
+                  title="Recipe Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* <button className="recipe-detail__favorite">Add to Favorites</button> */}
+      </div>
     </div>
   );
 }

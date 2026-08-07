@@ -6,6 +6,7 @@ function SearchBar({ onSearch }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSearch(query);
+    setQuery("");
   }
   return (
     <form className="search-bar" onSubmit={handleSubmit}>

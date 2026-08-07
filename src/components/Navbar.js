@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <nav className="navbar">
-      <h1 className="navbar__title">🍳 Recipe Finder</h1>
+      <h1 className="navbar__title">🍳 RecipeNest 🍽️ </h1>
     </nav>
   );
 }

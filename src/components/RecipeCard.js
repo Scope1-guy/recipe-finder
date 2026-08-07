@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function RecipeCard({ recipe, onRecipeClick }) {
+function RecipeCard({ recipe }) {
   return (
     <Link to={`/recipe/${recipe.idMeal}`} className="recipe-card">
       <img
